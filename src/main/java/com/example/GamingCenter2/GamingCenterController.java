@@ -14,7 +14,7 @@ public class GamingCenterController {
     }
 
 
-    @PostMapping
+    @PostMapping("/update")
     public PcStatusEntity createOrUpdate(@RequestBody PcStatusEntity pcStatus) {
         return service.save(pcStatus);
     }
