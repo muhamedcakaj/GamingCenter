@@ -1,13 +1,27 @@
 package com.example.GamingCenter2;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class GamingCenterController {
+    PcStatusService service;
 
-    @GetMapping("/get")
-    public String get() {
-        return "Hello World";
+    public GamingCenterController(PcStatusService service) {
+        this.service = service;
+    }
+
+
+    @PostMapping
+    public PcStatusEntity createOrUpdate(@RequestBody PcStatusEntity pcStatus) {
+        return service.save(pcStatus);
+    }
+
+
+    @GetMapping
+    public List<PcStatusEntity> getAll() {
+        return service.getAll();
     }
 }
